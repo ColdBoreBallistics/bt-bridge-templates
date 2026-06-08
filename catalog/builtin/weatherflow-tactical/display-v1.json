@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "id": "builtin.weatherflow-tactical-display",
+  "version": "1.0.0",
+  "type": "display",
+  "name": "WeatherFlow Tactical Display",
+  "author": "builtin",
+  "min_broker_version": "1.0.0",
+  "compatible_with": {
+    "device_type": ["builtin.weatherflow-tactical"]
+  },
+  "default_view": "imperial",
+  "notifications": [
+    {
+      "char": "961f0005-d2d6-43e3-a417-3bb8217e0e01",
+      "description": "16-byte little-endian sensor frame (~1 Hz). Confirmed protocol: off0 u16le wind /1024 mph, off8 s16le temp x0.1 C, off10 u8 humidity %, off12 u16le pressure x0.1 hPa. No wind-direction, no density-altitude.",
+      "views": {
+        "raw": {
+          "fields": [
+            {
+              "id": "wind_raw",
+              "label": "Wind (raw u16le @0)",
+              "type": "raw",
+              "offset": 0,
+              "length": 2,
+              "encoding": "bytes",
+              "display": true
+            },
+            {
+              "id": "temp_raw",
+              "label": "Temp (raw s16le @8)",
+              "type": "raw",
+              "offset": 8,
+              "length": 2,
+              "encoding": "bytes",
+              "display": true
+            },
+            {
+              "id": "humidity_raw",
+              "label": "Humidity (raw u8 @10)",
+              "type": "raw",
+              "offset": 10,
+              "length": 1,
+              "encoding": "bytes",
+              "display": true
+            },
+            {
+              "id": "pressure_raw",
+              "label": "Pressure (raw u16le @12)",
+              "type": "raw",
+              "offset": 12,
+              "length": 2,
+              "encoding": "bytes",
+              "display": true
+            }
+          ]
+        },
+        "imperial": {
+          "fields": [
+            {
+              "id": "wind_mph",
+              "label": "Wind Speed",
+              "type": "scale_offset",
+              "offset": 0,
+              "length": 2,
+              "encoding": "uint16_le",
+              "scale": 0.0009765625,
+              "offset_value": 0.0,
+              "unit": "mph",
+              "precision": 1,
+              "display": true
+            },
+            {
+              "id": "temp_c",
+              "label": "Temp C (internal)",
+              "type": "scale_offset",
+              "offset": 8,
+              "length": 2,
+              "encoding": "int16_le",
+              "scale": 0.1,
+              "offset_value": 0.0,
+              "display": false
+            },
+            {
+              "id": "temp_f",
+              "label": "Temperature",
+              "type": "expr",
+              "expr": "temp_c * 9 / 5 + 32",
+              "unit": "°F",
+              "precision": 1,
+              "display": true
+            },
+            {
+              "id": "humidity",
+              "label": "Humidity",
+              "type": "scale_offset",
+              "offset": 10,
+              "length": 1,
+              "encoding": "uint8",
+              "scale": 1.0,
+              "offset_value": 0.0,
+              "unit": "%",
+              "precision": 0,
+              "display": true
+            },
+            {
+              "id": "pressure_hpa",
+              "label": "Pressure",
+              "type": "scale_offset",
+              "offset": 12,
+              "length": 2,
+              "encoding": "uint16_le",
+              "scale": 0.1,
+              "offset_value": 0.0,
+              "unit": "hPa",
+              "precision": 1,
+              "display": true
+            }
+          ]
+        },
+        "metric": {
+          "fields": [
+            {
+              "id": "wind_mph_hidden",
+              "label": "Wind mph (internal)",
+              "type": "scale_offset",
+              "offset": 0,
+              "length": 2,
+              "encoding": "uint16_le",
+              "scale": 0.0009765625,
+              "offset_value": 0.0,
+              "display": false
+            },
+            {
+              "id": "wind_ms",
+              "label": "Wind Speed",
+              "type": "expr",
+              "expr": "wind_mph_hidden * 0.44704",
+              "unit": "m/s",
+              "precision": 2,
+              "display": true
+            },
+            {
+              "id": "temp_c",
+              "label": "Temperature",
+              "type": "scale_offset",
+              "offset": 8,
+              "length": 2,
+              "encoding": "int16_le",
+              "scale": 0.1,
+              "offset_value": 0.0,
+              "unit": "°C",
+              "precision": 1,
+              "display": true
+            },
+            {
+              "id": "humidity",
+              "label": "Humidity",
+              "type": "scale_offset",
+              "offset": 10,
+              "length": 1,
+              "encoding": "uint8",
+              "scale": 1.0,
+              "offset_value": 0.0,
+              "unit": "%",
+              "precision": 0,
+              "display": true
+            },
+            {
+              "id": "pressure_hpa",
+              "label": "Pressure",
+              "type": "scale_offset",
+              "offset": 12,
+              "length": 2,
+              "encoding": "uint16_le",
+              "scale": 0.1,
+              "offset_value": 0.0,
+              "unit": "hPa",
+              "precision": 1,
+              "display": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "reads": []
+}

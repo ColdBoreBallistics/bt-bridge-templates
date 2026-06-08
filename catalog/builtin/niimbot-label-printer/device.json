@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "builtin.niimbot-label-printer-device",
+  "version": "1.0.0",
+  "type": "device",
+  "name": "Niimbot Label Printer",
+  "author": "builtin",
+  "manufacturer": "Niimbot",
+  "description": "Niimbot thermal label printer — B1 / B21 Pro (ISSC UART-over-BLE).",
+  "variants": [
+    {
+      "variant_id": "b1",
+      "name": "B1",
+      "signature": { "name_prefix": "B1" }
+    },
+    {
+      "variant_id": "b21-pro",
+      "name": "B21 Pro",
+      "signature": { "name_prefix": "B21" }
+    }
+  ],
+  "signature": {
+    "service_uuids": ["0000ff00-0000-1000-8000-00805f9b34fb"],
+    "name_prefix": "B"
+  },
+  "channels": [
+    {
+      "name": "uart_write",
+      "service_uuid": "0000ff00-0000-1000-8000-00805f9b34fb",
+      "char_uuid": "0000ff02-0000-1000-8000-00805f9b34fb",
+      "operation": "write"
+    },
+    {
+      "name": "uart_notify",
+      "service_uuid": "0000ff00-0000-1000-8000-00805f9b34fb",
+      "char_uuid": "0000ff01-0000-1000-8000-00805f9b34fb",
+      "operation": "notify"
+    }
+  ],
+  "references": {
+    "codec": "builtin.niimbot-uart-framed@^1.0.0"
+  }
+}

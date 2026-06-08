@@ -1,0 +1,3 @@
+# BT Bridge Templates — tooling dependencies (lint + index builder)
+# Python 3.11 or later required.
+packaging>=24.0

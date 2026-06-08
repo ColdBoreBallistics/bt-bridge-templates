@@ -1,0 +1,78 @@
+{
+  "index_format_version": 1,
+  "count": 6,
+  "templates": [
+    {
+      "id": "builtin.battery-service-display",
+      "version": "1.0.0",
+      "type": "component",
+      "name": "Battery Service (GATT standard)",
+      "description": "Standard GATT Battery Service — UUID 0x180F, characteristic 0x2A19 (battery level 0-100%).",
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/shared/display.battery-service.json",
+      "sha256": "f4be924ee8fa9a08bd3bd887feb16bad4389698f60becdad0d9596b147035d5b",
+      "requires": {}
+    },
+    {
+      "id": "builtin.device-information-display",
+      "version": "1.0.0",
+      "type": "component",
+      "name": "Device Information Service (GATT standard)",
+      "description": "Standard GATT Device Information Service — UUID 0x180A (manufacturer, model, firmware strings).",
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/shared/display.device-information.json",
+      "sha256": "90dcb98906e35d1e3e63d3344a5ab64cbb91fdc75b15a3118260353cab39136c",
+      "requires": {}
+    },
+    {
+      "id": "builtin.niimbot-label-printer-device",
+      "version": "1.0.0",
+      "type": "device",
+      "name": "Niimbot Label Printer",
+      "description": "Niimbot thermal label printer — B1 / B21 Pro (ISSC UART-over-BLE).",
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/niimbot-label-printer/device.json",
+      "sha256": "f78b96b261f9fefedff93715cf54a658068ec7c45093fce24eb06deaa6fd7518",
+      "requires": {}
+    },
+    {
+      "id": "builtin.niimbot-uart-framed",
+      "version": "1.0.0",
+      "type": "codec",
+      "name": "Niimbot UART Frame Codec",
+      "description": "ISSC UART-over-BLE framing for Niimbot printers: 55 55 [cmd] [len_hi] [len_lo] [data...] [xor] AA AA.",
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/shared/codec.niimbot-uart-framed.json",
+      "sha256": "9265f2a0c4604c60e96b86d3857d0663ba7d38d82e118554b74ac745c6849431",
+      "requires": {}
+    },
+    {
+      "id": "builtin.weatherflow-tactical-device",
+      "version": "1.0.0",
+      "type": "device",
+      "name": "WeatherFlow Tactical",
+      "description": "WeatherFlow Tactical wind/temperature/humidity/pressure meter (proprietary 16-byte LE notify frame).",
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/weatherflow-tactical/device.json",
+      "sha256": "58881032a600161699bd7b77ae18b5896c18f46f8817ec00df7976eab357ecac",
+      "requires": {}
+    },
+    {
+      "id": "builtin.weatherflow-tactical-display",
+      "version": "1.0.0",
+      "type": "display",
+      "name": "WeatherFlow Tactical Display",
+      "description": null,
+      "author": "builtin",
+      "namespace": "builtin",
+      "path": "catalog/builtin/weatherflow-tactical/display-v1.json",
+      "sha256": "e61eb5a76c39d64caa208a815b6011bdf0cfba223eb1d2ecff4fb09f2d6401e6",
+      "requires": {}
+    }
+  ]
+}

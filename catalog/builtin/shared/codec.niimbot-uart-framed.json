@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "builtin.niimbot-uart-framed",
+  "version": "1.0.0",
+  "type": "codec",
+  "name": "Niimbot UART Frame Codec",
+  "author": "builtin",
+  "min_broker_version": "1.0.0",
+  "description": "ISSC UART-over-BLE framing for Niimbot printers: 55 55 [cmd] [len_hi] [len_lo] [data...] [xor] AA AA.",
+  "framing": {
+    "type": "wrapped",
+    "header": ["0x55", "0x55"],
+    "tail": ["0xAA", "0xAA"],
+    "length_offset": 3,
+    "length_size": 2,
+    "length_encoding": "uint16_be",
+    "checksum": {
+      "algorithm": "xor",
+      "range": "cmd_through_data",
+      "position": "before_tail"
+    },
+    "payload_offset": 5
+  },
+  "reassembly": {
+    "required": true,
+    "strategy": "accumulate_until_tail"
+  },
+  "known_commands": {
+    "0x01": "get_info_request",
+    "0x02": "get_info_response",
+    "0xA9": "start_print",
+    "0xAF": "set_dimension",
+    "0xBE": "set_quantity",
+    "0x85": "get_rfid",
+    "0xE3": "end_page",
+    "0xF3": "end_print",
+    "0x84": "get_print_status",
+    "0xA3": "set_label_type",
+    "0xA4": "set_label_density"
+  }
+}

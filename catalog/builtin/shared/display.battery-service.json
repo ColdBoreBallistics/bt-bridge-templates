@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "builtin.battery-service-display",
+  "version": "1.0.0",
+  "type": "component",
+  "name": "Battery Service (GATT standard)",
+  "author": "builtin",
+  "description": "Standard GATT Battery Service — UUID 0x180F, characteristic 0x2A19 (battery level 0-100%).",
+  "reads": [
+    {
+      "char": "00002a19-0000-1000-8000-00805f9b34fb",
+      "description": "Battery Level (0-100%)",
+      "views": {
+        "raw": {
+          "fields": [
+            {
+              "id": "battery_raw",
+              "label": "Battery Level (raw)",
+              "type": "raw",
+              "offset": 0,
+              "length": 1,
+              "encoding": "uint8",
+              "display": true
+            }
+          ]
+        },
+        "metric": {
+          "fields": [
+            {
+              "id": "battery_pct",
+              "label": "Battery",
+              "type": "scale_offset",
+              "offset": 0,
+              "length": 1,
+              "encoding": "uint8",
+              "scale": 1.0,
+              "offset_value": 0.0,
+              "unit": "%",
+              "precision": 0,
+              "display": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notifications": []
+}

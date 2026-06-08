@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "builtin.weatherflow-tactical-device",
+  "version": "1.0.0",
+  "type": "device",
+  "name": "WeatherFlow Tactical",
+  "author": "builtin",
+  "manufacturer": "WeatherFlow",
+  "description": "WeatherFlow Tactical wind/temperature/humidity/pressure meter (proprietary 16-byte LE notify frame).",
+  "signature": {
+    "service_uuids": ["961f0001-d2d6-43e3-a417-3bb8217e0e01"],
+    "name_prefix": "WF"
+  },
+  "channels": [
+    {
+      "name": "weather_data",
+      "service_uuid": "961f0001-d2d6-43e3-a417-3bb8217e0e01",
+      "char_uuid": "961f0005-d2d6-43e3-a417-3bb8217e0e01",
+      "operation": "notify"
+    }
+  ],
+  "references": {
+    "display": "builtin.weatherflow-tactical-display@^1.0.0"
+  }
+}

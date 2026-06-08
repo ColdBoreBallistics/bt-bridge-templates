@@ -1,0 +1,39 @@
+name: Validate templates
+
+# Runs on every push and pull request. Community PRs are linted with the contrib.-only
+# rule enforced, and the generated catalog index must be up to date.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install tooling dependencies
+        run: pip install -r requirements.txt
+
+      # Structural validity across the WHOLE catalog (builtin + community):
+      # JSON, schema_version, semver, no duplicate (id,version), dependency resolution.
+      - name: Lint full catalog (structural)
+        run: python3 tools/lint_templates.py catalog/
+
+      # Namespace gate scoped to community contributions only: anything under
+      # catalog/community/ must use the contrib. namespace, never builtin.
+      # (Scoping to catalog/community/ avoids falsely rejecting the maintainers'
+      # own builtin templates, which the gate would otherwise flag.)
+      - name: Enforce contrib.-only rule for community templates
+        run: python3 tools/lint_templates.py catalog/community/ --community-pr
+
+      - name: Verify catalog index is up to date
+        run: python3 tools/build_index.py --check
