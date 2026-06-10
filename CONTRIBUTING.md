@@ -153,6 +153,11 @@ Use [semantic versioning](https://semver.org): `MAJOR.MINOR.PATCH`.
 Never edit a published version in place if it changes behavior — publish a new version. The
 catalog keeps multiple versions side by side.
 
+Per-template versions are independent of the catalog *repository* version. For the repo-level
+release policy (tags, the `schema_version` vs template-version distinction, and the release flow),
+see [`docs/VERSIONING.md`](docs/VERSIONING.md). Tooling/schema changes are noted in
+[`CHANGELOG.md`](CHANGELOG.md); to report a security issue see [`SECURITY.md`](SECURITY.md).
+
 ## 8. Code of Conduct & licensing
 
 By contributing, you agree that your contribution is licensed under

@@ -1,0 +1,9 @@
+# Code owners for bt-bridge-templates.
+# See https://docs.github.com/articles/about-code-owners
+
+# Tooling, schema, CI, and built-in templates are maintainer-owned.
+*                       @ColdBoreBallistics/all-dev
+
+# Community contributions land here — reviewed by maintainers, but this is where
+# external contributors add their contrib.* templates.
+/catalog/community/     @ColdBoreBallistics/all-dev
